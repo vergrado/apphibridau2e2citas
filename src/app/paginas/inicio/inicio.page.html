@@ -1,0 +1,29 @@
+<!-- src/app/paginas/inicio/inicio.page.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Citas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<app-encabezado
+  (irAInicio)="onRefrescar()"
+  (irAConfiguracion)="onConfig()">
+</app-encabezado>
+
+<ion-content>
+  <ion-card *ngIf="cita" class="cita-card">
+    <ion-card-content>
+      <p class="frase">"{{ cita.frase }}"</p>
+      <p class="autor">— {{ cita.autor }}</p>
+    </ion-card-content>
+  </ion-card>
+  <div *ngIf="!cita" class="vacio">
+    <p>No hay cita para mostrar.</p>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['/gestion']">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

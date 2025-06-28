@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Configuración</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Toggle para borrar cita al inicio -->
+  <ion-item>
+    <ion-label>Permitir borrar cita en el inicio</ion-label>
+    <ion-toggle
+      [checked]="borrarAlInicio"
+      (ionChange)="onToggle($event)">
+    </ion-toggle>
+  </ion-item>
+</ion-content>
