@@ -1,0 +1,20 @@
+{
+  "name": "app-citas",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "start": "ionic serve",
+    "build": "ionic build",
+    "sync": "cap sync"
+  },
+  "dependencies": {
+    "@angular/common": "^15.0.0",
+    "@angular/core": "^15.0.0",
+    "@ionic/angular": "^6.0.0",
+    "@capacitor/core": "5.0.0",
+    "@capacitor/preferences": "^1.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "5.0.0"
+  }
+}
