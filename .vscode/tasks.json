@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "ionic: serve",
+      "type": "shell",
+      "command": "npx ionic serve",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "custom",
+        "pattern": [
+          {
+            "regexp": ".",
+            "file": 1,
+            "location": 2,
+            "message": 3
+          }
+        ],
+        "background": {
+          // Ajusta estos patrones según la salida de tu CLI al iniciar el servidor
+          "beginsPattern": "Development Server is listening",
+          "endsPattern": "localhost:8100"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Ionic: Serve and Debug in Chrome",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "runtimeExecutable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "url": "http://localhost:8100",
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "ionic: serve",
+      "runtimeArgs": [
+        "--remote-debugging-port=9222",
+        "--user-data-dir=${workspaceFolder}/.vscode/chrome",
+        "--no-first-run",
+        "--no-default-browser-check"
+      ],
+      "sourceMapPathOverrides": {
+        "webpack:///src/*": "${workspaceFolder}/src/*"
+      }
+    }
+  ]
+}

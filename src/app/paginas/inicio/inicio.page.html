@@ -1,29 +1,42 @@
 <!-- src/app/paginas/inicio/inicio.page.html -->
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Citas</ion-title>
-  </ion-toolbar>
+  <app-encabezado
+    (irAInicio)="onRefrescar()"
+    (irAConfiguracion)="onConfig()">
+  </app-encabezado>
 </ion-header>
 
-<app-encabezado
-  (irAInicio)="onRefrescar()"
-  (irAConfiguracion)="onConfig()">
-</app-encabezado>
+<ion-content class="ion-padding">
 
-<ion-content>
+  <!-- Cita aleatoria -->
   <ion-card *ngIf="cita" class="cita-card">
     <ion-card-content>
       <p class="frase">"{{ cita.frase }}"</p>
       <p class="autor">— {{ cita.autor }}</p>
     </ion-card-content>
   </ion-card>
+
   <div *ngIf="!cita" class="vacio">
-    <p>No hay cita para mostrar.</p>
+    <p>No hay cita aleatoria para mostrar.</p>
   </div>
+
+  <!-- Lista completa de citas -->
+  <ion-list *ngIf="citas.length">
+    <ion-list-header>
+      <ion-label>Otras citas disponibles</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let c of citas">
+      <ion-label>
+        <h3>{{ c.frase }}</h3>
+        <p>— {{ c.autor }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button [routerLink]="['/gestion']">
       <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
 </ion-content>
