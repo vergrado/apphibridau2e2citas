@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule, AlertController } from '@ionic/angular'; // ✅ Solo importamos AlertController
+import { IonicModule, AlertController } from '@ionic/angular'; 
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { CitasService } from '../../servicios/citas.service'; // Servicio de citas
@@ -8,10 +8,10 @@ import { Cita } from '../../modelos/cita.model'; // Modelo de cita
 
 @Component({
   selector: 'app-gestion',
-  standalone: true, // ✅ Componente Standalone
+  standalone: true, // Componente Standalone
   imports: [
     CommonModule,
-    IonicModule,          // ✅ Ya incluye todos los componentes Ionic como ion-divider, ion-card, etc.
+    IonicModule,          // Ya incluye todos los componentes Ionic como ion-divider, ion-card, etc.
     ReactiveFormsModule   // Para formularios reactivos
   ],
   templateUrl: './gestion.page.html',
