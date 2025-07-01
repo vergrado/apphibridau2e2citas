@@ -1,53 +1,42 @@
-// src/app/paginas/inicio/inicio.page.ts
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { RouterModule, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 import { CitasService } from '../../servicios/citas.service';
 import { ConfiguracionService } from '../../servicios/configuracion.service';
-import { Cita } from '../../modelos/cita.model';
 import { EncabezadoComponent } from '../../componentes/encabezado/encabezado.component';
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [CommonModule, IonicModule, RouterModule, EncabezadoComponent],
-
-
+  imports: [CommonModule, IonicModule, EncabezadoComponent],
   templateUrl: './inicio.page.html',
   styleUrls: ['./inicio.page.scss']
 })
-export class InicioPage implements OnInit {
-  cita?: Cita;
-  citas: Cita[] = [];
-  borrarAlInicio = false;
+export class InicioPage {
+  cita: any = null;
+  citas: any[] = [];
 
   constructor(
     private citasService: CitasService,
-    private cfgService: ConfiguracionService,
-    private router: Router
+    private configService: ConfiguracionService
   ) {}
 
-  async ngOnInit() {
-    const cfg = await this.cfgService.cargar();
-    this.borrarAlInicio = cfg.borrarAlInicio;
-
-    const todas = this.citasService.obtenerCitas();
-    this.citas = todas;
-
-    if (!this.borrarAlInicio && todas.length > 0) {
-      this.cita = this.citasService.obtenerCitaAleatoria();
-    } else {
-      this.cita = undefined;
+  async ionViewWillEnter() {
+    const config = await this.configService.cargar();
+    if (config.borrarAlInicio) {
+      this.citasService.limpiar();
     }
+
+    this.cita = this.citasService.obtenerAleatoria();
+    this.citas = this.citasService.obtenerTodas().filter(c => c !== this.cita);
   }
 
   onRefrescar() {
-    this.ngOnInit();
+    this.ionViewWillEnter(); // Recarga
   }
 
   onConfig() {
-    this.router.navigate(['/configuracion']);
+    window.location.href = '/configuracion';
   }
 }

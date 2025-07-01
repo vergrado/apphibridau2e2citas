@@ -1,12 +1,9 @@
-<!-- src/app/paginas/inicio/inicio.page.html -->
 <app-encabezado
   (irAInicio)="onRefrescar()"
   (irAConfiguracion)="onConfig()">
 </app-encabezado>
 
 <ion-content class="ion-padding">
-
-  <!-- Cita aleatoria -->
   <ion-card *ngIf="cita" class="cita-card">
     <ion-card-content>
       <p class="frase">"{{ cita.frase }}"</p>
@@ -14,11 +11,6 @@
     </ion-card-content>
   </ion-card>
 
-  <div *ngIf="!cita" class="vacio">
-    <p>No hay cita aleatoria para mostrar.</p>
-  </div>
-
-  <!-- Lista completa de citas -->
   <ion-list *ngIf="citas.length">
     <ion-list-header>
       <ion-label>Otras citas disponibles</ion-label>
@@ -32,9 +24,8 @@
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button [routerLink]="['/gestion']">
+    <ion-fab-button routerLink="/gestion">
       <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
 </ion-content>

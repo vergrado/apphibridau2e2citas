@@ -1,13 +1,52 @@
-ion-item {
-  --highlight-color-focused: #5c6bc0;
-  --border-color: #ccc;
+/* src/app/paginas/gestion/gestion.page.scss */
+
+.gestion-fondo {
+  --background: linear-gradient(to bottom right, #fceabb, #f8b500); // Fondo artístico degradado
 }
 
-ion-button {
-  margin-top: 1rem;
+.titulo-artistico {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #4b2e83;
+  margin-bottom: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-ion-text small {
-  font-size: 0.8rem;
-  padding-left: 0.5rem;
+.btn-agregar {
+  margin-top: 1.5rem;
+  background: #4b2e83;
+  color: white;
+  border-radius: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.separador {
+  margin: 2rem 0 1rem 0;
+}
+
+.titulo-lista {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+  margin: 1rem 0;
+  padding-left: 1rem;
+}
+
+ion-item h2 {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000;
+}
+
+ion-item p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.mensaje-vacio {
+  text-align: center;
+  margin-top: 2rem;
+  font-style: italic;
+  font-size: 1rem;
 }

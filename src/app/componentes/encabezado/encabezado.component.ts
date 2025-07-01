@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-// Importa IonicModule para poder usar <ion-header>, <ion-toolbar>, etc.
+import { Component, Output, EventEmitter } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-encabezado',
   standalone: true,
-  imports: [IonicModule],   // ← Asegúrate de importar IonicModule
+  imports: [IonicModule, CommonModule],
   templateUrl: './encabezado.component.html',
   styleUrls: ['./encabezado.component.scss']
 })

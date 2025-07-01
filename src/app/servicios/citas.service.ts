@@ -1,31 +1,43 @@
 import { Injectable } from '@angular/core';
 import { Cita } from '../modelos/cita.model';
 
-@Injectable({ providedIn: 'root' })  // hace al servicio singleton y disponible en toda la app
+@Injectable({
+  providedIn: 'root'
+})
 export class CitasService {
-  // arreglo interno donde guardamos las citas en memoria
   private citas: Cita[] = [
-    { id: 1, frase: 'El éxito consiste en obtener lo que se desea...', autor: 'Ralph Waldo Emerson' }
+    { frase: 'El éxito consiste en obtener lo que se desea. La felicidad en disfrutar lo que se obtiene.', autor: 'Ralph Waldo Emerson' },
+    { frase: 'No hay camino para la paz, la paz es el camino.', autor: 'Mahatma Gandhi' },
+    { frase: 'La vida es lo que pasa mientras estás ocupado haciendo otros planes.', autor: 'John Lennon' }
   ];
 
-  /** Devuelve una copia del arreglo de citas */
-  obtenerCitas(): Cita[] {
-    return [...this.citas];
+  // Obtener todas las citas
+  obtenerTodas(): Cita[] {
+    return [...this.citas]; // Copia para no alterar el original
   }
 
-  /** Agrega una nueva cita al arreglo */
-  agregarCita(cita: Cita) {
+  // Obtener una cita aleatoria
+  obtenerAleatoria(): Cita | null {
+    const total = this.citas.length;
+    if (total === 0) return null;
+    const indice = Math.floor(Math.random() * total);
+    return this.citas[indice];
+  }
+
+  // Agregar una nueva cita
+  agregar(cita: Cita): void {
     this.citas.push(cita);
   }
 
-  /** Elimina la cita cuyo id coincida */
-  eliminarCita(id: number) {
-    this.citas = this.citas.filter(c => c.id !== id);
+  // Eliminar por índice
+  eliminar(index: number): void {
+    if (index >= 0 && index < this.citas.length) {
+      this.citas.splice(index, 1);
+    }
   }
 
-  /** Devuelve una cita aleatoria */
-  obtenerCitaAleatoria(): Cita {
-    const i = Math.floor(Math.random() * this.citas.length);
-    return this.citas[i];
+  // Borrar todas las citas
+  limpiar(): void {
+    this.citas = [];
   }
 }

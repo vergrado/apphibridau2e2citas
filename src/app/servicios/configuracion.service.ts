@@ -1,32 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Preferences } from '@capacitor/preferences';
 
-// Interfaz que define la configuración
 export interface Configuracion {
   borrarAlInicio: boolean;
 }
 
-// Clave bajo la que guardamos el valor
-const CLAVE_BORRAR = 'borrarAlInicio';
-
 @Injectable({ providedIn: 'root' })
 export class ConfiguracionService {
+  private readonly clave = 'configuracion';
 
-  /** Guarda la opción en storage nativo */
-  async guardar(config: Configuracion): Promise<void> {
+  async guardar(config: Configuracion) {
     await Preferences.set({
-      key: CLAVE_BORRAR,
-      value: JSON.stringify(config.borrarAlInicio)
+      key: this.clave,
+      value: JSON.stringify(config),
     });
   }
 
-  /** Carga la opción desde storage, devuelve false si no existe */
   async cargar(): Promise<Configuracion> {
-    const { value } = await Preferences.get({ key: CLAVE_BORRAR });
-    return {
-      borrarAlInicio: value === null
-        ? false
-        : JSON.parse(value)
-    };
+    const { value } = await Preferences.get({ key: this.clave });
+    return value ? JSON.parse(value) : { borrarAlInicio: false };
   }
 }

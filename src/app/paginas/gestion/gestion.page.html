@@ -1,11 +1,53 @@
+<!-- src/app/paginas/gestion/gestion.page.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Gestión de Citas</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Gestión de citas</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
 
-  <ion-content class="ion-padding">
-    <!-- resto de tu template -->
-  </ion-content>
+  <!-- Formulario para agregar nueva cita -->
+  <form [formGroup]="formulario" (ngSubmit)="agregarCita()">
+    <ion-item>
+      <ion-label position="floating">Frase</ion-label>
+      <ion-input formControlName="frase"></ion-input>
+    </ion-item>
+    <!-- Validaciones de frase -->
+    <ion-text color="danger" *ngIf="frase?.touched && frase?.invalid">
+      <p *ngIf="frase?.errors?.['required']">La frase es obligatoria.</p>
+      <p *ngIf="frase?.errors?.['minlength']">Mínimo 5 caracteres.</p>
+    </ion-text>
 
+    <ion-item>
+      <ion-label position="floating">Autor</ion-label>
+      <ion-input formControlName="autor"></ion-input>
+    </ion-item>
+    <!-- Validaciones de autor -->
+    <ion-text color="danger" *ngIf="autor?.touched && autor?.invalid">
+      <p *ngIf="autor?.errors?.['required']">El autor es obligatorio.</p>
+      <p *ngIf="autor?.errors?.['minlength']">Mínimo 2 caracteres.</p>
+    </ion-text>
+
+    <ion-button expand="block" type="submit" class="ion-margin-top" [disabled]="formulario.invalid">
+      Agregar Cita
+    </ion-button>
+  </form>
+
+  <!-- Separador visual -->
+  <ion-divider class="separador"></ion-divider>
+
+  <!-- Lista de citas existentes -->
+  <ion-list>
+    <ion-item *ngFor="let cita of citas">
+      <ion-label>
+        <h2>{{ cita.frase }}</h2>
+        <p>— {{ cita.autor }}</p>
+      </ion-label>
+      <ion-button fill="clear" color="danger" slot="end" (click)="eliminarCita(cita.id)">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

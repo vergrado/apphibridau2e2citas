@@ -1,9 +1,6 @@
-//  representa una cita
+// src/app/modelos/cita.model.ts
 export interface Cita {
-  // identificador único de la cita
-  id: number; 
-  // texto de la cita      
-  frase: string; 
-  // autor
-  autor: string;    
+  id: number;
+  frase: string;
+  autor: string;
 }
